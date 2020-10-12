@@ -998,8 +998,12 @@ CompositeCollider2D:
       - X: 100
         Y: -9999900
       - X: 100
-        Y: -40000041
-      - X: 41
+        Y: -39999900
+      - X: -41
+        Y: -39999900
+      - X: -100
+        Y: -39999959
+      - X: -100
         Y: -40000100
       - X: -10000041
         Y: -40000100
@@ -1044,7 +1048,7 @@ CompositeCollider2D:
       - {x: 2.00001, y: -1.9999607}
       - {x: 1.9999748, y: -0.99999}
       - {x: 0.00001, y: -1.0000193}
-      - {x: -0.0000253, y: -4.00001}
+      - {x: -0.0000394, y: -4.00001}
       - {x: -5.99999, y: -3.999961}
       - {x: -6.0000253, y: -2.99999}
       - {x: -6.9999905, y: -2.9999607}
@@ -3389,46 +3393,16 @@ CompositeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1873673430}
-    m_ColliderPaths:
-    - - X: -10000100
-        Y: -29999959
-      - X: -10000100
-        Y: -40000041
-      - X: -10000041
-        Y: -40000100
-      - X: 41
-        Y: -40000100
-      - X: 100
-        Y: -40000041
-      - X: 100
-        Y: -29999959
-      - X: 41
-        Y: -29999900
-      - X: 0
-        Y: -29999900
-      - X: 0
-        Y: 0
-      - X: -10000000
-        Y: 0
-      - X: -10000000
-        Y: -29999900
-      - X: -10000041
-        Y: -29999900
+  m_ColliderPaths: []
   m_CompositePaths:
-    m_Paths:
-    - - {x: -0.0000252, y: -4.00001}
-      - {x: -0.000029300001, y: 0}
-      - {x: -1, y: -0.000029300001}
-      - {x: -0.9999748, y: -4.00001}
+    m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!50 &1873673429
@@ -3439,7 +3413,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873673424}
-  m_BodyType: 1
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -3462,9 +3436,9 @@ TilemapCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 1
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
