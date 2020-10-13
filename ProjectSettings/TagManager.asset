@@ -19,7 +19,7 @@ TagManager:
   - Player
   - Background
   - Enemy
-  - 
+  - Hazards
   - 
   - 
   - 
@@ -45,15 +45,18 @@ TagManager:
   - name: Background
     uniqueID: 1547673521
     locked: 0
-  - name: Midground
+  - name: Climbing
     uniqueID: 2053552223
+    locked: 0
+  - name: Hazards
+    uniqueID: 1725539533
+    locked: 0
+  - name: Enemies
+    uniqueID: 3626620383
     locked: 0
   - name: Player
     uniqueID: 2304418107
     locked: 0
   - name: Foreground
     uniqueID: 3416013727
-    locked: 0
-  - name: Enemies
-    uniqueID: 3626620383
     locked: 0
