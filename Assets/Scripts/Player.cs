@@ -8,7 +8,11 @@ public class Player : MonoBehaviour
     [SerializeField] float movementSpeed = 5f;
     [SerializeField] float climbSpeed = 3f;
     [SerializeField] float jumpHeight = 5f;
+    [SerializeField] float deathKickMin = 15f;
+    [SerializeField] float deathKickMax= 25f;
+
     // state
+    bool isAlive = true;
 
     // cached refs
     Rigidbody2D rigidbody2D;
@@ -31,11 +35,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        ClimbLadder();
-        Jump();
-        Run();
-        FlipSprite();
+        if (!isAlive)
+        {
+            return;
+        }
+            ClimbLadder();
+            Jump();
+            Run();
+            FlipSprite();
+            Die();
     }
+
 
     private void ClimbLadder()
     {
@@ -94,6 +104,19 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector2 (Mathf.Sign (rigidbody2D.velocity.x), transform.localScale.y);
         }
 
+    }
+
+    private void Die()
+    {
+        var isTouchingHazard = bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards"));
+        if (isTouchingHazard)
+        {
+            animator.SetTrigger("die");
+            isAlive = false;
+            rigidbody2D.velocity = new Vector2(Random.Range(deathKickMin, deathKickMax), Random.Range(deathKickMin, deathKickMax));
+            rigidbody2D.constraints = RigidbodyConstraints2D.None;
+            feetCollider.enabled = false;
+        }
     }
 
 }

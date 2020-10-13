@@ -173,6 +173,8 @@ MonoBehaviour:
   movementSpeed: 7.5
   climbSpeed: 5.5
   jumpHeight: 24
+  deathKickMin: 25
+  deathKickMax: 50
 --- !u!70 &2873868998044103960
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
