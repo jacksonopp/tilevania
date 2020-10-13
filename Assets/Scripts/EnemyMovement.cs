@@ -18,13 +18,20 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (IsFacingRight())
+        {
+            Vector2 enemyMovement = new Vector2(moveSpeed, 0f);
+            rigidbody2D.velocity = enemyMovement;
+        } else
+        {
+            rigidbody2D.velocity = new Vector2(-moveSpeed, 0f);
+        }
+
     }
 
-    private void Move()
+    private bool IsFacingRight()
     {
-        Vector2 enemyMovement = new Vector2(moveSpeed, rigidbody2D.velocity.y);
-        rigidbody2D.velocity = enemyMovement;
+        return transform.localScale.x > 0;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
