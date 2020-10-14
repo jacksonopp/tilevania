@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpHeight = 5f;
     [SerializeField] float deathKickMin = 15f;
     [SerializeField] float deathKickMax= 25f;
+    [Range(0f,1f)] [SerializeField] float slowmo = 0.2f;
+    [Range(0f,5f)] [SerializeField] float deathWait = 3f;
 
     // state
     bool isAlive = true;
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start ()
     {
+        Time.timeScale = 1;
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         bodyCollider = GetComponent<CapsuleCollider2D>();
@@ -111,12 +114,26 @@ public class Player : MonoBehaviour
         var isTouchingHazard = bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards"));
         if (isTouchingHazard)
         {
-            animator.SetTrigger("die");
-            isAlive = false;
-            rigidbody2D.velocity = new Vector2(Random.Range(deathKickMin, deathKickMax), Random.Range(deathKickMin, deathKickMax));
-            rigidbody2D.constraints = RigidbodyConstraints2D.None;
-            feetCollider.enabled = false;
+            StartCoroutine(DeathTransition());
         }
     }
+    private IEnumerator DeathTransition()
+    {
+        Time.timeScale = slowmo;
+        animator.SetTrigger("die");
+        isAlive = false;
+        rigidbody2D.velocity = new Vector2(Random.Range(deathKickMin, deathKickMax), Random.Range(deathKickMin, deathKickMax));
+        rigidbody2D.angularVelocity = Random.Range(deathKickMin, deathKickMax);
+        rigidbody2D.constraints = RigidbodyConstraints2D.None;
+        feetCollider.enabled = false;
+        FindObjectOfType<LevelExit>().GetComponent<BoxCollider2D>().enabled = false;
+        yield return new WaitForSeconds(deathWait);
+        Time.timeScale = 1;
+        FindObjectOfType<LevelExit>().GetComponent<BoxCollider2D>().enabled = true;
+        FindObjectOfType<LevelLoader>().ReloadScene();
+    }
 
+    private void RestartLevel()
+    {
+    }
 }
